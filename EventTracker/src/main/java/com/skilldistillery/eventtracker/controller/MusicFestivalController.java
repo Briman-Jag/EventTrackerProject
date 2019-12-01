@@ -67,7 +67,7 @@ public class MusicFestivalController {
 	}
 	
 	@PutMapping("musicfestivals/{musicFestId}")
-	public MusicFestival musicFestId(@PathVariable Integer musicFestId, @RequestBody MusicFestival musicFest, HttpServletResponse resp) {
+	public MusicFestival updateMusicFest(@PathVariable Integer musicFestId, @RequestBody MusicFestival musicFest, HttpServletResponse resp) {
 		try {
 			svc.updateMusicFest(musicFestId, musicFest);
 			if (musicFest == null) {
