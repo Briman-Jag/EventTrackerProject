@@ -26,7 +26,7 @@ public class EventTrackerWebIntegrationTest {
 	private String baseUrl = "http://localhost:8087/";
 
 	  @Test
-	  public void testListAllMusicFEstivals() throws IOException{
+	  public void testListAllMusicFestivals() throws IOException{
 	    // configure TestRestTemplate to git our film index route
 	    TestRestTemplate restTest = new TestRestTemplate();
 	    ResponseEntity<String> response = restTest.getForEntity(baseUrl + "api/musicfestivals", String.class);

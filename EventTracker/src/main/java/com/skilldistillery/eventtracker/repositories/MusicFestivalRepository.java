@@ -10,8 +10,6 @@ import com.skilldistillery.eventtracker.entities.MusicFestival;
 
 public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Integer>{
 	
-	
-	
 	List<MusicFestival> findByNumOfDays(int numOfDays);
 	
 	List<MusicFestival> findByNameContains(String keyword);
