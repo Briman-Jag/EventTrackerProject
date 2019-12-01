@@ -14,14 +14,14 @@ public interface MusicFestivalRepository extends JpaRepository<MusicFestival, In
 	
 	List<MusicFestival> findByNumOfDays(int numOfDays);
 	
-	List<MusicFestivalRepository> findByNameContains(String keyword);
+	List<MusicFestival> findByNameContains(String keyword);
 	
-	List<MusicFestivalRepository> findByHeadliners(String headliners);
+	List<MusicFestival> findByHeadliners(String headliners);
 	
-	List<MusicFestivalRepository> findByMusicGenre(String genre);
+	List<MusicFestival> findByMusicGenre(String genre);
 	
 	@Query("SELECT m from MusicFestival m WHERE m.ticketPrice BETWEEN :lowest AND :highest ")
-	List<MusicFestivalRepository> queryByTicketPriceInRange(@Param("lowest")double low,@Param("highest") double high);
+	List<MusicFestival> queryByTicketPriceInRange(@Param("lowest")double low,@Param("highest") double high);
 	
 	
 }
