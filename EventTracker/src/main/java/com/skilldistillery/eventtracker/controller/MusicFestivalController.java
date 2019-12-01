@@ -22,10 +22,11 @@ public class MusicFestivalController {
 		return "pooooooong";
 	}
 	
-	@GetMapping("musicfestival")
+	@GetMapping("musicfestivals")
 	public List<MusicFestival> listMusicFestivals() {
-		List<MusicFestival> musicFests = svc.listAllMusicFests();
-		
+		return svc.listAllMusicFests();
 	}
+	
+	
 
 }
