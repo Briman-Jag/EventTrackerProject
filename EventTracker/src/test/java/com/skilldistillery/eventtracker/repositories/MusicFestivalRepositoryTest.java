@@ -21,9 +21,8 @@ public class MusicFestivalRepositoryTest {
 	
 	@Test
 	void test_MusicFestivalRepository_findByHeadliners() {
-		List<MusicFestival> musicFests = repo.findByHeadliners("ZHU, Miike Snow");
+		List<MusicFestival> musicFests = repo.findByHeadlinersIgnoreCase("ZHU, Miike Snow");
 		assertEquals(1, musicFests.get(0).getId());
-				
 	}
 
 }

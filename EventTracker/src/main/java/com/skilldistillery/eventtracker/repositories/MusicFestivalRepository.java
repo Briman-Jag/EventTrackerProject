@@ -12,11 +12,11 @@ public interface MusicFestivalRepository extends JpaRepository<MusicFestival, In
 	
 	List<MusicFestival> findByNumOfDays(int numOfDays);
 	
-	List<MusicFestival> findByNameContains(String keyword);
+	List<MusicFestival> findByNameContainsIgnoreCase(String keyword);
 	
-	List<MusicFestival> findByHeadliners(String headliners);
+	List<MusicFestival> findByHeadlinersContainsIgnoreCase(String headliners);
 	
-	List<MusicFestival> findByMusicGenre(String genre);
+	List<MusicFestival> findBymusicGenreContainsIgnoreCase(String genre);
 	
 	@Query("SELECT m from MusicFestival m WHERE m.ticketPrice BETWEEN :lowest AND :highest ")
 	List<MusicFestival> queryByTicketPriceInRange(@Param("lowest")double low,@Param("highest") double high);

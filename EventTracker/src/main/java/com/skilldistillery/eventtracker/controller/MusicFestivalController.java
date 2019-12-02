@@ -81,8 +81,8 @@ public class MusicFestivalController {
 		return musicFest;
 	}
 
-	@DeleteMapping("musicfestivals/{postId}")
-	public void deletePost(@PathVariable("postId") Integer musicFestId , HttpServletResponse resp ){
+	@DeleteMapping("musicfestivals/{musicFestId}")
+	public void deleteMusicFestival(@PathVariable("musicFestId") Integer musicFestId , HttpServletResponse resp ){
 		try {
 			boolean deleted = svc.deleteMusicFest(musicFestId);
 			 if(deleted) {
@@ -99,14 +99,23 @@ public class MusicFestivalController {
 	
 	@GetMapping("musicfestivals/search/{keyword}")
 	public List<MusicFestival> findPostByKeyword(@PathVariable String keyword, HttpServletResponse resp) {
-		List<MusicFestival> posts = repo.findByNameContains(keyword);
+		List<MusicFestival> posts = repo.findByNameContainsIgnoreCase(keyword);
 		if (posts == null) {
 			resp.setStatus(404);
 		}
 		return posts;
 	}
 	
-	@GetMapping("posts/search/price/{low}/{high}")
+	@GetMapping("musicfestivals/searchByGenre/{genre}")
+	public List<MusicFestival> findByMusicGenre(@PathVariable String genre, HttpServletResponse resp) {
+		List<MusicFestival> posts = repo.findBymusicGenreContainsIgnoreCase(genre);
+		if (posts == null) {
+			resp.setStatus(404);
+		}
+		return posts;
+	}
+	
+	@GetMapping("musicfestivals/search/price/{low}/{high}")
 	public List<MusicFestival> findByPriceRange(@PathVariable double low, @PathVariable double high, HttpServletResponse resp) {
 		List<MusicFestival> posts = repo.queryByTicketPriceInRange(low, high);
 		if (posts == null) {
@@ -115,6 +124,22 @@ public class MusicFestivalController {
 		return posts;
 	}
 	
+	@GetMapping("musicfestivals/searchByDays/{numOfDays}")
+	public List<MusicFestival> findByNumberOfDays(@PathVariable int numOfDays, HttpServletResponse resp) {
+		List<MusicFestival> posts = repo.findByNumOfDays(numOfDays);
+		if (posts == null) {
+			resp.setStatus(404);
+		}
+		return posts;
+	}
 	
+	@GetMapping("musicfestivals/searchByHeadliners/{headliners}")
+	public List<MusicFestival> findByHeadliners(@PathVariable String headliners, HttpServletResponse resp) {
+		List<MusicFestival> posts = repo.findByHeadlinersContainsIgnoreCase(headliners);
+		if (posts == null) {
+			resp.setStatus(404);
+		}
+		return posts;
+	}
 	
 }
