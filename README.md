@@ -5,9 +5,9 @@ My Event Tracker Project is used to keep track of Music Festivals attended, deta
 The project consists of a single table created in MySQL workbench.
 
 <img src="MusicFestivalTable.png" width="300">
-<br>
 The table was then populated with data and a Web Application was created using Spring Boot with the goal of publishing a REST API, using Spring Data JPA to give full CRUD functions on the MusicFestivalTable, and have all that be tested using Postman.
 The test conditions for the project were:
+
   * A new event object implements full CRUD.  
   * All interactions with the database are done so RESTfully.
 
@@ -45,3 +45,4 @@ The test conditions for the project were:
 * Apache Tomcat
 ```
 ### Lessons Learned
+A major issue that I ran into while doing this project was the spring boot application not being able to read my tables name correctly. The table was named MusicFestival and the application was looking for music_festival and giving an error that the table did not exist. To overcome this issue I added "spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" to the applications.properties.
