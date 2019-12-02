@@ -3,7 +3,9 @@
 My Event Tracker Project is used to keep track of Music Festivals attended, details about the event (genre of music, ticket price, headlining acts, dates, number of days, location), and list the musical artists I saw there. The program allows users to create, read, update, and delete Music Festival events from a database. It also allows users to make queries to find a list of festival by number of days, keywords in the festivals name, search by the headliner or genre, and find a list of festivals whose ticket prices are in a specific range.
 ### Description
 The project consists of a single table created in MySQL workbench.
+
 <img src="MusicFestivalTable.png" width="300">
+<br>
 The table was then populated with data and a Web Application was created using Spring Boot with the goal of publishing a REST API, using Spring Data JPA to give full CRUD functions on the MusicFestivalTable, and have all that be tested using Postman.
 The test conditions for the project were:
   * A new event object implements full CRUD.  
