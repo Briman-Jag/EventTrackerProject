@@ -15,10 +15,10 @@ The test conditions for the project were:
   | Return Type          | Route                  | Functionality                                                                       |
   |----------------------|------------------------|-------------------------------------------------------------------------------------|
   | `List<MusicFestival>`|`GET api/musicfestivals`                                | Gets all music festivals                            |
-  | `List<MusicFestival>`|`GET api/musicfestivals/{musicFestId}`                  | Gets one music festivals  by id                     |
+  | `List<MusicFestival>`|`GET api/musicfestivals/{musicFestId}`                  | Gets a music festival by id                         |
   | `List<MusicFestival>`|`POST api/musicfestivals`                               | Creates a new music festivals                       |
-  | `List<MusicFestival>`|`PUT api/musicfestivals/{musicFestId}`                  | Updates details in an existing music festivals by id|
-  | `Boolean`            |`DELETE api/musicfestivals/{musicFestId}`               | Replaces an existing music festivals  by id         |
+  | `List<MusicFestival>`|`PUT api/musicfestivals/{musicFestId}`                  | Updates details for an existing music festival by id|
+  | `Boolean`            |`DELETE api/musicfestivals/{musicFestId}`               | Replaces an existing music festival  by id          |
   | `List<MusicFestival>`|`GET api/musicfestivals/search/{keyword}`               | Finds music festivals by keyword in its name        |
   | `List<MusicFestival>`|`GET api/musicfestivals/searchByGenre/{genre}`          | Finds music festivals by genre                      |
   | `List<MusicFestival>`|`GET api/musicfestivals/search/price/{low}/{high}`      | Finds music festivals with tickets priced in range  |
