@@ -41,6 +41,8 @@ function getMusicFest(musicFestId){
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			// ToDo: Display an error on web page.
 			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('musicFestData');
+			dataDiv.textContent = 'Music Festival Not Found!';
 		}
 	};
 	xhr.send(null);
@@ -50,6 +52,10 @@ function displayMusicFest(musicFest) {
 	
 	  var dataDiv = document.getElementById('musicFestData');
 	  dataDiv.textContent = '';
+	  while (dataDiv.firstElementChild) {
+			dataDiv.removeChild(dataDiv.firstElementChild);
+		}
+	  
 	  // Music Festival Name Header
 	  let h1 = document.createElement('h1');
 	  dataDiv.appendChild(h1);
@@ -96,7 +102,7 @@ function addMusicFest(){
 	console.log('Adding new Music Festival!');
 	// Add Post xhr code
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:8080/api/musicfestivals', true);
+	xhr.open('POST', 'http://localhost:8087/api/musicfestivals', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -109,19 +115,22 @@ function addMusicFest(){
 			dataDiv.textContent = 'Error Adding Music Festival';
 		}
 	};
+	
 	let form = document.addMusicFestForm;
 	var newMusicFestObject = {
 		name : form.name.value,
 		location : form.location.value,
+		numOfDays : form.numOfDays.value,
 		startDate : form.startDate.value,
 		endDate : form.endDate.value,
 		musicGenre : form.musicGenre.value,
+		headliners : form.headliners.value,
 		artistsSeen : form.artistsSeen.value,
-		ticketPrice : form.ticketPrice.value,
+		ticketPrice : form.ticketPrice.value
 		
 	};
-	var newMusicFestJsonString = JSON.stringify(newMusicFestObject); // Convert JS object to
-	// JSON string
+	// Convert JS object to JSON string
+	var newMusicFestJsonString = JSON.stringify(newMusicFestObject); 
 	xhr.send(newMusicFestJsonString);
 }
 
