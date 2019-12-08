@@ -75,7 +75,7 @@ function displayMusicFest(musicFest) {
 	    addRow('Music Genre(s):', musicFest.musicGenre);
 	    addRow('Headliners:', musicFest.headliners);
 	    addRow('Artists Seen:', musicFest.artistsSeen);
-	    addRow('Ticket Price:', musicFest.ticketPrice);
+	    addRow('Ticket Price:', '$ ' + musicFest.ticketPrice);
 	  
 	    dataDiv.appendChild(tbl);
 	    
