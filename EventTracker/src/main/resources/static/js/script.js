@@ -77,7 +77,7 @@ function displayMusicFest(musicFest) {
 	tbl.style.border = "solid";
 	var tbdy = document.createElement('tbody');
 	tbdy.style.border = "solid";
-	
+
 	tbl.appendChild(tbdy);
 
 	addRow('Location:', musicFest.location);
@@ -183,10 +183,10 @@ function displayAllMusicFests(musicFests) {
 	let h1 = document.createElement('h1');
 	dataDiv.appendChild(h1);
 	h1.textContent = 'Music Festival List';
-	
+
 	let h3 = document.createElement('h3');
 	dataDiv.appendChild(h3);
-	h3.textContent = '(Click Row to Edit)'; 
+	h3.textContent = '(Click Row to Edit)';
 
 	// Music Festival Details Table
 	// Table Creation Functions for Cells and rows
@@ -218,13 +218,14 @@ function displayAllMusicFests(musicFests) {
 	addHeader('Ticket Price');
 
 	for (let i = 0; i < musicFests.length; i++) {
-		//Click Event for updates
+		// Click Event for updates
+
 		// Table Rows
 		addRow(musicFests[i].name, musicFests[i].location,
 				musicFests[i].numOfDays, musicFests[i].startDate,
 				musicFests[i].endDate, musicFests[i].musicGenre,
-				musicFests[i].headliners, musicFests[i].artistsSeen, 
-				'$ ' + musicFests[i].ticketPrice);
+				musicFests[i].headliners, musicFests[i].artistsSeen, '$ '
+						+ musicFests[i].ticketPrice);
 
 		dataDiv.appendChild(tbl);
 	}
@@ -254,5 +255,6 @@ function displayAllMusicFests(musicFests) {
 		addCell(tr, val_9);
 		tbdy.appendChild(tr);
 	}
-
 }
+
+	function update
