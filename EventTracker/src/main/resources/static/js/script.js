@@ -19,7 +19,6 @@ function init() {
 			function(event) {
 				event.preventDefault();
 				listAllMusicFests();
-
 			});
 
 	document.addMusicFestForm.addMusicFest.addEventListener('click', function(
@@ -220,22 +219,21 @@ function displayAllMusicFests(musicFests) {
 	
 	for (let i = 0; i < musicFests.length; i++) {
 		// Table Rows
+		// Click Event for updates form
 		addRow(musicFests[i].name, musicFests[i].location,
 				musicFests[i].numOfDays, musicFests[i].startDate,
 				musicFests[i].endDate, musicFests[i].musicGenre,
 				musicFests[i].headliners, musicFests[i].artistsSeen, '$ '
-						+ musicFests[i].ticketPrice);
-
-		
-
-		// Click Event for updates form
-		document.addEventListener('click', function(event) {
-			event.preventDefault();
-			updateMusicFest(musicFests[i].id);
-		});
+						+ musicFests[i].ticketPrice);	
 	}
+	// Figure out how to use make this work with rows
+//	document.addEventListener('click', function(event) {
+//	updateMusicFest(musicFests[i].id);
+//	});
+
 	
 	dataDiv.appendChild(tbl);
+	
 	// Add cell function
 	function addCell(tr, val) {
 		var td = document.createElement('td');
@@ -245,6 +243,7 @@ function displayAllMusicFests(musicFests) {
 
 		tr.appendChild(td)
 	}
+	
 	// Add row function
 	function addRow(val_1, val_2, val_3, val_4, val_5, val_6, val_7, val_8,
 			val_9) {
