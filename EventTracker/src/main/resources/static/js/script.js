@@ -458,8 +458,8 @@ function updateMusicFest(musicFestId) {
 		xhr.setRequestHeader("Content-type", "application/json");
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4 && xhr.status < 400) {
-				var musicFest = JSON.parse(xhr.responseText);
-				buildMusicFestUpdateForm(musicFest);
+				listAllMusicFests();
+				
 			}
 			if (xhr.readyState === 4 && xhr.status >= 400) {
 				console.error(xhr.status + ': ' + xhr.responseText);
