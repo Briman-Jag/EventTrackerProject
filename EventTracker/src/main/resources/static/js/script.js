@@ -422,11 +422,13 @@ function updateMusicFest(musicFestId) {
 		
 		// Submit Button
 		let submitUpdates = document.createElement('button');
-		submitUpdates.setAttribute("name", "submitUpdates")
-
+		submitUpdates.setAttribute("name", "submitUpdates");
+		submitUpdates.appendChild(updateMusicFestForm);
+		
 		updateMusicFestForm.submitUpdates.addEventListener('click',
 				function(event) {
 					event.preventDefault();
+					updateMusicFest();
 					displayAllMusicFests();
 				});
 
@@ -445,5 +447,25 @@ function updateMusicFest(musicFestId) {
 		// Convert JS object to JSON string
 		var updateMusicFestJsonString = JSON.stringify(updateMusicFestObject);
 		xhr.send(updateMusicFestJsonString);
+	}
+	
+	function deleteMusicFest(musicFestId) {
+		console.log('Deleting Music Festival!');
+		// Add Post xhr code
+		var xhr = new XMLHttpRequest();
+		xhr.open('DELETE', 'http://localhost:8087/api/musicfestivals/' + musicFestId,
+				true);
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status < 400) {
+				var musicFest = JSON.parse(xhr.responseText);
+				buildMusicFestUpdateForm(musicFest);
+			}
+			if (xhr.readyState === 4 && xhr.status >= 400) {
+				console.error(xhr.status + ': ' + xhr.responseText);
+				var dataDiv = document.getElementById('updateMusicFestData');
+				dataDiv.textContent = 'Error Updating Music Festival';
+			}
+		};
 	}
 
