@@ -306,7 +306,7 @@ function updateMusicFest(musicFestId) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			var musicFest = JSON.parse(xhr.responseText);
-			buildMusicFestUpdateForm(musicFest);
+			displayAllMusicFests();
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
@@ -326,110 +326,87 @@ function updateMusicFest(musicFestId) {
 		
 		// Create updateMusicFestForm
 		var updateMusicFestForm = document.createElement('form');
+		updateMusicFestForm.setAttribute("name", "musicFestForm")
+		dataDiv.appendChild(updateMusicFestForm);
 		
 		// Form Table
 		// Music Festival Name Header
 		let h3 = document.createElement('h3');
-		dataDiv.appendChild(h3);
+		updateMusicFestForm .appendChild(h3);
 		h3.textContent = 'Update ' + musicFest.name;
 		
 		
-		dataDiv.appendChild(updateMusicFestForm);
-		
-		// Music Festival Details Table
-		// Table Creation Functions for Cells and rows
-		var tbl = document.createElement('table');
-		tbl.style.border = "solid";
-		var tbdy = document.createElement('tbody');
-		tbdy.style.border = "solid";
+		// Music Festival Updates
 
 		var editLocation = document.createElement('input');
 		editLocation.setAttribute("type", "text");
 		editLocation.setAttribute("name", "location");
+		editLocation.setAttribute("value", "location");
 		editLocation.setAttribute("placeholder", musicFest.location);
+		updateMusicFestForm.appendChild(editLocation);
+		
 		
 		var editNumOfDays = document.createElement('input');
 		editNumOfDays.setAttribute("type", "text");
 		editNumOfDays.setAttribute("name", "numOfDays");
+		editNumOfDays.setAttribute("value", "numOfDays");
 		editNumOfDays.setAttribute("placeholder", musicFest.numOfDays);
+		updateMusicFestForm.appendChild(editNumOfDays);
 		
 		var editStartDate = document.createElement('input');
 		editStartDate.setAttribute("type", "text");
 		editStartDate.setAttribute("name", "startDate");
+		editStartDate.setAttribute("value", "startDate");
 		editStartDate.setAttribute("placeholder", musicFest.startDate);
+		updateMusicFestForm.appendChild(editStartDate);
 		
 		var editEndDate = document.createElement('input');
 		editEndDate.setAttribute("type", "text");
 		editEndDate.setAttribute("name", "endDate");
+		editEndDate.setAttribute("value", "endDate");
 		editEndDate.setAttribute("placeholder", musicFest.endDate);
+		updateMusicFestForm.appendChild(editEndDate);
 		
 		var editMusicGenre = document.createElement('input');
 		editEndDate.setAttribute("type", "text");
 		editEndDate.setAttribute("name", "endDate");
+		editEndDate.setAttribute("value", "endDate");
 		editEndDate.setAttribute("placeholder", musicFest.endDate);
+		updateMusicFestForm.appendChild(editMusicGenre);
 		
 		var editHeadliners = document.createElement('input');
 		editHeadliners.setAttribute("type", "text")
 		editHeadliners.setAttribute("name", "headliners");
+		editHeadliners.setAttribute("value", "headliners");
 		editHeadliners.setAttribute("placeholder", musicFest.headliners);
+		updateMusicFestForm.appendChild(editHeadliners);
 				
 		var editArtistsSeen = document.createElement('input');
 		ditArtistsSeen.setAttribute("type", "text");
 		editArtistsSeen.setAttribute("name", "artistsSeen");
+		editArtistsSeen.setAttribute("value", "artistsSeen");
 		editArtistsSeen.setAttribute("placeholder", musicFest.artistsSeen);
+		updateMusicFestForm.appendChild(editArtistsSeen);
 				
 		var editTicketPrice = document.createElement('input');
 		editTicketPrice.setAttribute("type", "text");
 		editTicketPrice.setAttribute("name", "ticketPrice");
+		editTicketPrice.setAttribute("value", "ticketPrice");
 		editTicketPrice.setAttribute("placeholder", musicFest.ticketPrice);
+		updateMusicFestForm.appendChild(editTicketPrice);
 		
-		// Rows
-		addRow('Location:', updateMusicFestForm.appendChild(editLocation));
 
-		addRow('Number of Days:', updateMusicFestForm.appendChild(editNumOfDays));
-
-		addRow('Start Date:', updateMusicFestForm.appendChild(editStartDate));
-
-		addRow('End Date:', updateMusicFestForm.appendChild(editEndDate));
-
-		addRow('Music Genre(s):', updateMusicFestForm.appendChild(editMusicGenre));
-
-		addRow('Headliners:', updateMusicFestForm.appendChild(editHeadliners));
-
-		addRow('Artists Seen:', updateMusicFestForm.appendChild(editArtistsSeen));
-
-		addRow('Ticket Price:', updateMusicFestForm.appendChild(editTicketPrice));
-		
-		tbl.appendChild(tbdy);
-		updateMusicFestForm.appendChild(tbl);
-
-		function addCell(tr, val) {
-			var td = document.createElement('td');
-
-			td.innerHTML = val;
-
-			tr.appendChild(td);
-		}
-
-		function addRow(val_1, val_2) {
-			var tr = document.createElement('tr');
-
-			addCell(tr, val_1);
-			addCell(tr, val_2);
-
-			tbdy.appendChild(tr);
-		}
-		
 		// Submit Button
-		let submitUpdates = document.createElement('button');
+		let submitUpdates = document.createElement('input');
 		submitUpdates.setAttribute("name", "submitUpdates");
-		submitUpdates.appendChild(updateMusicFestForm);
+		submitUpdates.setAttribute("type", "submit");
+		submitUpdates.setAttribute("value", "Update");
+		updateMusicFestForm.appendChild(submitUpdates);
 		
-		updateMusicFestForm.submitUpdates.addEventListener('click',
+		submitUpdates.addEventListener('click',
 				function(event) {
 					event.preventDefault();
 					updateMusicFest();
-					displayAllMusicFests();
 				});
 
 		let form = document.updateMusicFestForm;
