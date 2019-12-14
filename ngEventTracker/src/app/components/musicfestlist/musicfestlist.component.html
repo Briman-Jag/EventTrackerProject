@@ -1,0 +1,34 @@
+<div id="musicFestList" *ngIf="!selectedMusicFest">
+  <h1>Music Festival List</h1>
+  <!-- <span class="showHand hover" *ngFor="let genre of genres" (click)="selectedGenre = genre">{{genre}} | </span> -->
+  <table>
+    <thead>
+      <tr>
+        <td>ID: </td>
+        <td>Name: </td>
+        <td>Location: </td>
+        <td>Number of Days: </td>
+        <td>Start Date: </td>
+        <td>End Date: </td>
+        <td>Music Genre(s): </td>
+        <td>Headliners: </td>
+        <td>Artists Seen: </td>
+        <td>Ticket Price: </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let musicfestival of musicFests" (click)="selectedMusicFest = musicfestival;">
+        <td>{{musicfestival.id}}</td>
+        <td>{{musicfestival.name}}</td>
+        <td>{{musicfestival.location</td>
+        <td>{{musicfestival.numOfDays</td>
+        <td>{{musicfestival.startDate</td>
+        <td>{{musicfestival.endDate</td>
+        <td>{{musicfestival.musicGenre</td>
+        <td>{{musicfestival.headliners</td>
+        <td>{{musicfestival.artistSeen</td>
+        <td>{{musicfestival.ticketPrice</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
