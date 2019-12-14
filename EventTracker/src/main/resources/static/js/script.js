@@ -92,14 +92,13 @@ function displayMusicFest(musicFest) {
 	// Edit Button
 	var editBtn = document.createElement('input');
 	editBtn.setAttribute("type", "submit");
-	editBtn.setAttribute("class", "btn btn-primary");
 	editBtn.setAttribute("value", " Edit ");
 	editBtn.setAttribute("name", "editMusicFest");
 
 	editBtn.addEventListener('click', function(event) {
 		event.preventDefault();
 		console.log("edit button clicked")
-		updateMusicFest(musicFest.id);
+		buildMusicFestUpdateForm(musicFest);
 	});
 	
 	// Delete Button
@@ -276,10 +275,6 @@ function displayAllMusicFests(musicFests) {
 			tbdy.appendChild(tr);
 		}
 	}
-	// Figure out how to use make this work with rows
-	// document.addEventListener('click', function(event) {
-	// updateMusicFest(musicFests[i].id);
-	// });
 
 	dataDiv.appendChild(tbl);
 
@@ -295,29 +290,9 @@ function displayAllMusicFests(musicFests) {
 
 }
 
-// function update
-function updateMusicFest(musicFestId) {
-	console.log('Updating new Music Festival!');
-	// Add Post xhr code
-	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'http://localhost:8087/api/musicfestivals/' + musicFestId,
-			true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4 && xhr.status < 400) {
-			var musicFest = JSON.parse(xhr.responseText);
-			displayAllMusicFests();
-		}
-		if (xhr.readyState === 4 && xhr.status >= 400) {
-			console.error(xhr.status + ': ' + xhr.responseText);
-			var dataDiv = document.getElementById('updateMusicFestData');
-			dataDiv.textContent = 'Error Updating Music Festival';
-		}
-	};
-}
-
 	function buildMusicFestUpdateForm(musicFest) {
 		
+		console.log("Building Update Form")
 		var dataDiv = document.getElementById('updateMusicFestData');
 		dataDiv.textContent = '';
 		while (dataDiv.firstElementChild) {
@@ -403,11 +378,11 @@ function updateMusicFest(musicFestId) {
 		submitUpdates.setAttribute("value", "Update");
 		updateMusicFestForm.appendChild(submitUpdates);
 		
-		submitUpdates.addEventListener('click',
-				function(event) {
-					event.preventDefault();
-					updateMusicFest();
-				});
+//		submitUpdates.addEventListener('click',
+//				function(event) {
+//					event.preventDefault();
+//					updateMusicFest();
+//				});
 
 		let form = document.updateMusicFestForm;
 		var updateMusicFestObject = {
@@ -424,6 +399,27 @@ function updateMusicFest(musicFestId) {
 		// Convert JS object to JSON string
 		var updateMusicFestJsonString = JSON.stringify(updateMusicFestObject);
 		xhr.send(updateMusicFestJsonString);
+	}
+	
+	// function update
+	function updateMusicFest(musicFestId) {
+		console.log('Updating new Music Festival!');
+		// Add Post xhr code
+		var xhr = new XMLHttpRequest();
+		xhr.open('PUT', 'http://localhost:8087/api/musicfestivals/' + musicFestId,
+				true);
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status < 400) {
+				var musicFest = JSON.parse(xhr.responseText);
+				displayAllMusicFests();
+			}
+			if (xhr.readyState === 4 && xhr.status >= 400) {
+				console.error(xhr.status + ': ' + xhr.responseText);
+				var dataDiv = document.getElementById('updateMusicFestData');
+				dataDiv.textContent = 'Error Updating Music Festival';
+			}
+		};
 	}
 	
 	function deleteMusicFest(musicFestId) {
