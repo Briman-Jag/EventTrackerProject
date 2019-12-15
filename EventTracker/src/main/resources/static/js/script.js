@@ -312,63 +312,76 @@ function displayAllMusicFests(musicFests) {
 		
 		
 		// Music Festival Updates
-
+		
+		var editName = document.createElement('input');
+		editName.setAttribute("type", "text");
+		editName.setAttribute("name", "name");
+		editName.setAttribute("value", musicFest.name);
+		updateMusicFestForm.appendChild(editName);
+		
 		var editLocation = document.createElement('input');
 		editLocation.setAttribute("type", "text");
 		editLocation.setAttribute("name", "location");
-		editLocation.setAttribute("value", "location");
-		editLocation.setAttribute("placeholder", musicFest.location);
+		editLocation.setAttribute("value", musicFest.location);
+//		editLocation.setAttribute("placeholder", musicFest.location);
 		updateMusicFestForm.appendChild(editLocation);
-		
+
 		
 		var editNumOfDays = document.createElement('input');
 		editNumOfDays.setAttribute("type", "text");
 		editNumOfDays.setAttribute("name", "numOfDays");
-		editNumOfDays.setAttribute("value", "numOfDays");
-		editNumOfDays.setAttribute("placeholder", musicFest.numOfDays);
+		editNumOfDays.setAttribute("value", musicFest.numOfDays);
+//		editNumOfDays.setAttribute("placeholder", musicFest.numOfDays);
 		updateMusicFestForm.appendChild(editNumOfDays);
+
 		
 		var editStartDate = document.createElement('input');
 		editStartDate.setAttribute("type", "text");
 		editStartDate.setAttribute("name", "startDate");
-		editStartDate.setAttribute("value", "startDate");
-		editStartDate.setAttribute("placeholder", musicFest.startDate);
+		editStartDate.setAttribute("value", musicFest.startDate);
+//		editStartDate.setAttribute("placeholder", musicFest.startDate);
 		updateMusicFestForm.appendChild(editStartDate);
+
 		
 		var editEndDate = document.createElement('input');
 		editEndDate.setAttribute("type", "text");
 		editEndDate.setAttribute("name", "endDate");
-		editEndDate.setAttribute("value", "endDate");
-		editEndDate.setAttribute("placeholder", musicFest.endDate);
+		editEndDate.setAttribute("value", musicFest.endDate);
+//		editEndDate.setAttribute("placeholder", musicFest.endDate);
 		updateMusicFestForm.appendChild(editEndDate);
+
 		
 		var editMusicGenre = document.createElement('input');
-		editEndDate.setAttribute("type", "text");
-		editEndDate.setAttribute("name", "endDate");
-		editEndDate.setAttribute("value", "endDate");
-		editEndDate.setAttribute("placeholder", musicFest.endDate);
+		editMusicGenre.setAttribute("type", "text");
+		editMusicGenre.setAttribute("name", "musicGenre");
+		editMusicGenre.setAttribute("value", musicFest.musicGenre);
+//		editMusicGenre.setAttribute("placeholder", musicFest.musicGenre);
 		updateMusicFestForm.appendChild(editMusicGenre);
+
 		
 		var editHeadliners = document.createElement('input');
 		editHeadliners.setAttribute("type", "text")
 		editHeadliners.setAttribute("name", "headliners");
-		editHeadliners.setAttribute("value", "headliners");
-		editHeadliners.setAttribute("placeholder", musicFest.headliners);
+		editHeadliners.setAttribute("value", musicFest.headliners);
+//		editHeadliners.setAttribute("placeholder", musicFest.headliners);
 		updateMusicFestForm.appendChild(editHeadliners);
+
 				
 		var editArtistsSeen = document.createElement('input');
-		ditArtistsSeen.setAttribute("type", "text");
+		editArtistsSeen.setAttribute("type", "text");
 		editArtistsSeen.setAttribute("name", "artistsSeen");
-		editArtistsSeen.setAttribute("value", "artistsSeen");
-		editArtistsSeen.setAttribute("placeholder", musicFest.artistsSeen);
+		editArtistsSeen.setAttribute("value", musicFest.artistsSeen);
+//		editArtistsSeen.setAttribute("placeholder", musicFest.artistsSeen);
 		updateMusicFestForm.appendChild(editArtistsSeen);
+
 				
 		var editTicketPrice = document.createElement('input');
 		editTicketPrice.setAttribute("type", "text");
 		editTicketPrice.setAttribute("name", "ticketPrice");
-		editTicketPrice.setAttribute("value", "ticketPrice");
-		editTicketPrice.setAttribute("placeholder", musicFest.ticketPrice);
+		editTicketPrice.setAttribute("value", musicFest.ticketPrice);
+//		editTicketPrice.setAttribute("placeholder", musicFest.ticketPrice);
 		updateMusicFestForm.appendChild(editTicketPrice);
+
 		
 
 		// Submit Button
@@ -378,49 +391,65 @@ function displayAllMusicFests(musicFests) {
 		submitUpdates.setAttribute("value", "Update");
 		updateMusicFestForm.appendChild(submitUpdates);
 		
-//		submitUpdates.addEventListener('click',
-//				function(event) {
-//					event.preventDefault();
-//					updateMusicFest();
-//				});
+		submitUpdates.addEventListener('click',
+				function(event) {
+					event.preventDefault();
+					console.log('Updating new Music Festival!');
+					// Add Post xhr code
+					var xhr = new XMLHttpRequest();
+					xhr.open('PUT', 'http://localhost:8087/api/musicfestivals/' + musicFest.id,
+							true);
+					xhr.setRequestHeader("Content-type", "application/json");
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState === 4 && xhr.status < 400) {
+							var musicFest = JSON.parse(xhr.responseText);
+							displayAllMusicFests();
+						}
+						if (xhr.readyState === 4 && xhr.status >= 400) {
+							console.error(xhr.status + ': ' + xhr.responseText);
+							var dataDiv = document.getElementById('updateMusicFestData');
+							dataDiv.textContent = 'Error Updating Music Festival';
+						}
+					};
 
-		let form = document.updateMusicFestForm;
+		
 		var updateMusicFestObject = {
-			name : form.name.value,
-			location : form.location.value,
-			numOfDays : form.numOfDays.value,
-			startDate : form.startDate.value,
-			endDate : form.endDate.value,
-			musicGenre : form.musicGenre.value,
-			headliners : form.headliners.value,
-			artistsSeen : form.artistsSeen.value,
-			ticketPrice : form.ticketPrice.value
+			name : document.musicFestForm.name.value,
+			location : document.musicFestForm.location.value,
+			numOfDays : document.musicFestForm.numOfDays.value,
+			startDate : document.musicFestForm.startDate.value,
+			endDate : document.musicFestForm.endDate.value,
+			musicGenre : document.musicFestForm.musicGenre.value,
+			headliners : document.musicFestForm.headliners.value,
+			artistsSeen : document.musicFestForm.artistsSeen.value,
+			ticketPrice : document.musicFestForm.ticketPrice.value
 		};
 		// Convert JS object to JSON string
 		var updateMusicFestJsonString = JSON.stringify(updateMusicFestObject);
 		xhr.send(updateMusicFestJsonString);
+	});
 	}
 	
-	// function update
-	function updateMusicFest(musicFestId) {
-		console.log('Updating new Music Festival!');
-		// Add Post xhr code
-		var xhr = new XMLHttpRequest();
-		xhr.open('PUT', 'http://localhost:8087/api/musicfestivals/' + musicFestId,
-				true);
-		xhr.setRequestHeader("Content-type", "application/json");
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4 && xhr.status < 400) {
-				var musicFest = JSON.parse(xhr.responseText);
-				displayAllMusicFests();
-			}
-			if (xhr.readyState === 4 && xhr.status >= 400) {
-				console.error(xhr.status + ': ' + xhr.responseText);
-				var dataDiv = document.getElementById('updateMusicFestData');
-				dataDiv.textContent = 'Error Updating Music Festival';
-			}
-		};
-	}
+//	// function update
+//	function updateMusicFest(musicFestId) {
+//		console.log('Updating new Music Festival!');
+//		// Add Post xhr code
+//		var xhr = new XMLHttpRequest();
+//		xhr.open('PUT', 'http://localhost:8087/api/musicfestivals/' + musicFestId,
+//				true);
+//		xhr.setRequestHeader("Content-type", "application/json");
+//		xhr.onreadystatechange = function() {
+//			if (xhr.readyState === 4 && xhr.status < 400) {
+//				var musicFest = JSON.parse(xhr.responseText);
+//				displayAllMusicFests();
+//			}
+//			if (xhr.readyState === 4 && xhr.status >= 400) {
+//				console.error(xhr.status + ': ' + xhr.responseText);
+//				var dataDiv = document.getElementById('updateMusicFestData');
+//				dataDiv.textContent = 'Error Updating Music Festival';
+//			}
+//		};
+//	}
 	
 	function deleteMusicFest(musicFestId) {
 		console.log('Deleting Music Festival!');
