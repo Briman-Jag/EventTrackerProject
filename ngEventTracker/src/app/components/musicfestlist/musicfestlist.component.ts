@@ -21,6 +21,10 @@ export class MusicfestlistComponent implements OnInit {
 
   newMusicFest: MusicFestival = new MusicFestival();
 
+  editMusicFest: MusicFestival = null;
+
+  newMusicFestival: MusicFestival = new MusicFestival();
+
   // Constructor
   constructor(private musicFestSvc: MusicfestService, private currentRoute: ActivatedRoute) { }
 
@@ -58,4 +62,36 @@ export class MusicfestlistComponent implements OnInit {
       }
     );
   }
+
+  setEditMusicFestival() {
+    this.editMusicFest = Object.assign({}, this.selectedMusicFest);
+  }
+
+  updateMusicFest(musicFest: MusicFestival) {
+
+    this.musicFestSvc.update(musicFest).subscribe(
+      data => {
+        this.loadMusicFestivalList();
+        this.editMusicFest = null;
+        this.selectedMusicFest = null;
+      },
+      err => {
+        console.error(err);
+        console.error('MusicfestivalListComponent.loadTodoList(): error loading Music Festivals');
+      }
+    );
+  }
+
+  deleteMusicFest(id: number) {
+    this.musicFestSvc.delete(id).subscribe(
+      good => {
+        this.loadMusicFestivalList();
+      },
+      bad => {
+        console.error('MusicfestivalComponent.deleteMusicFest(): error deleting Music Festivals');
+        console.error(bad);
+      }
+    );
+  }
+
 }
