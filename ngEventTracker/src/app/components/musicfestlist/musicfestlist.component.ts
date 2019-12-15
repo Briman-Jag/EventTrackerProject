@@ -23,6 +23,8 @@ export class MusicfestlistComponent implements OnInit {
 
   editMusicFest: MusicFestival = null;
 
+  createMusicFestForm = null;
+
 
   // Constructor
   constructor(private musicFestSvc: MusicfestService, private currentRoute: ActivatedRoute) { }
@@ -62,7 +64,7 @@ export class MusicfestlistComponent implements OnInit {
     );
   }
 
-  displayMusicFest(musicfestival){
+  displayMusicFest(musicfestival) {
     this.selectedMusicFest = musicfestival;
   }
 
@@ -79,6 +81,7 @@ export class MusicfestlistComponent implements OnInit {
         console.error('MusicFestivalComponent.addMusicFestival(): error adding music festival');
       }
     );
+    this.newMusicFest = new MusicFestival();
 
   }
 

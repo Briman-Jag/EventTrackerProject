@@ -35,7 +35,7 @@ export class MusicfestService {
     return this.http.post<MusicFestival>(this.url, musicFest, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
-        return throwError('MusicFestivalService.index(): Error retrieving Music Festival.');
+        return throwError('MusicFestivalService.index(): Error creating Music Festival.');
       })
     );
   }

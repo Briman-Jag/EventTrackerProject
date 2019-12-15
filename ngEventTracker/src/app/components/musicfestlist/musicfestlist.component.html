@@ -33,12 +33,41 @@
     </tbody>
   </table>
 </div>
+<br>
+<br>
+<!-- <div id="addMusicFest" *ngIf='!createMusicFestForm'>
+    <button class="btn btn-primary" (click)="createMusicFestForm"> Add Music Festival </button><br>
+  </div> -->
+    <div id="musicFestForm" *ngIf="!selectedMusicFest">
+        <h2>Music Festival Form</h2>
+        <form>
+            <label for='name'>Name: </label>
+            <input type="text" size="20" name="name" [(ngModel)]="newMusicFest.name"/><br>
+            <label for='name'>Location: </label>
+            <input type="text" size="20" name="location" [(ngModel)]="newMusicFest.location"/><br>
+            <label for='name'>Number Of Days: </label>
+            <input type="text" name="numOfDays" [(ngModel)]="newMusicFest.numOfDays"/><br>
+            <label for='name'>Start Date: </label>
+            <input type="text" name="startDate" placeholder="YYYY-MM-DD" [(ngModel)]="newMusicFest.startDate"/><br>
+            <label for='name'>End Date: </label>
+            <input type="text" name="endDate" placeholder="YYYY-MM-DD" [(ngModel)]="newMusicFest.endDate"/><br>
+            <label for='name'>Music Genre(s): </label>
+            <input type="text" size="20" name="musicGenre" [(ngModel)]="newMusicFest.musicGenre"/><br>
+            <label for='name'>Headliners: </label>
+            <input type="text" size="30" name="headliners" [(ngModel)]="newMusicFest.headliners"/><br>
+            <label for='name'>Artists Seen: </label>
+            <input type="text" size="50" name="artistsSeen" [(ngModel)]="newMusicFest.artistsSeen"/><br>
+            <label for='name'>Ticket Price: $</label>
+            <input type="text" name="ticketPrice" [(ngModel)]="newMusicFest.ticketPrice"/><br>
+            <input type="submit" name="submitMusicFestForm" value='Add Music Festival' (click)="addMusicFestival(newMusicFest)"/>
+        </form>
+    </div>
 
 <div id="oneMusicFest" *ngIf="selectedMusicFest">
   <h2>Selected Music Festival</h2>
   <ul>
-    <li>{{selectedMusicFest.name | uppercase }}</li>
     <li>ID: {{ selectedMusicFest.id }}</li>
+    <li>{{selectedMusicFest.name}}</li>
     <li>Location: {{selectedMusicFest.location}}</li>
     <li>Number of Days: {{ selectedMusicFest.numOfDays }}</li>
     <li>Start Date: {{ selectedMusicFest.startDate }}</li>
@@ -48,4 +77,30 @@
     <li>Artists Seen: {{ selectedMusicFest.artistsSeen }}</li>
     <li>Ticket Price: {{ selectedMusicFest.ticketPrice }}</li>
   </ul>
+  <button class="btn btn-primary" size="20" (click)="setEditMusicFestival()"> Edit </button>
+  <button class="btn btn-danger" size="20" (click)="deleteMusicFest(selectedMusicFest.id) && selectedMusicFest = null"> Delete </button>
+</div>
+<div *ngIf='editMusicFest && selectedMusicFest'>
+    <form>
+        <label for='name'>Name: </label>
+        <input type="text" size="20" name="name" [(ngModel)]="editMusicFest.name"/><br>
+        <label for='name'>Location: </label>
+        <input type="text" size="20" name="location" [(ngModel)]="editMusicFest.location"/><br>
+        <label for='name'>Number Of Days: </label>
+        <input type="text" name="numOfDays" [(ngModel)]="editMusicFest.numOfDays"/><br>
+        <label for='name'>Start Date: </label>
+        <input type="text" name="startDate" placeholder="YYYY-MM-DD" [(ngModel)]="editMusicFest.startDate"/><br>
+        <label for='name'>End Date: </label>
+        <input type="text" name="endDate" placeholder="YYYY-MM-DD" [(ngModel)]="editMusicFest.endDate"/><br>
+        <label for='name'>Music Genre(s): </label>
+        <input type="text" size="20" name="musicGenre" [(ngModel)]="editMusicFest.musicGenre"/><br>
+        <label for='name'>Headliners: </label>
+        <input type="text" size="30" name="headliners" [(ngModel)]="editMusicFest.headliners"/><br>
+        <label for='name'>Artists Seen: </label>
+        <input type="text" size="50" name="artistsSeen" [(ngModel)]="editMusicFest.artistsSeen"/><br>
+        <label for='name'>Ticket Price: $</label>
+        <input type="text" name="ticketPrice" [(ngModel)]="editMusicFest.ticketPrice"/><br>
+        <input type="submit" name="editMusicFestForm" value=' Update ' (click)="updateMusicFest(editMusicFest)"/>
+        <button class="btn btn-secondary" (click)="displayMusicFest() && editMusicFest = null"> Cancel </button>
+    </form>
 </div>
