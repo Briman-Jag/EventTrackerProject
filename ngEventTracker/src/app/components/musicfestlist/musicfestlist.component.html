@@ -1,34 +1,51 @@
 <div id="musicFestList" *ngIf="!selectedMusicFest">
   <h1>Music Festival List</h1>
   <!-- <span class="showHand hover" *ngFor="let genre of genres" (click)="selectedGenre = genre">{{genre}} | </span> -->
-  <table>
+  <table border="solid" class="table" *ngIf="!selectedMusicFest">
     <thead>
       <tr>
-        <td>ID: </td>
-        <td>Name: </td>
-        <td>Location: </td>
-        <td>Number of Days: </td>
-        <td>Start Date: </td>
-        <td>End Date: </td>
-        <td>Music Genre(s): </td>
-        <td>Headliners: </td>
-        <td>Artists Seen: </td>
-        <td>Ticket Price: </td>
+        <td>ID:</td>
+        <td>Name:</td>
+        <td>Location:</td>
+        <td>Number of Days:</td>
+        <td>Start Date:</td>
+        <td>End Date:</td>
+        <td>Music Genre(s):</td>
+        <td>Headliners:</td>
+        <td>Artists Seen:</td>
+        <td>Ticket Price:</td>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let musicfestival of musicFests" (click)="selectedMusicFest = musicfestival">
-        <td>{{musicfestival.id}}</td>
-        <td>{{musicfestival.name}}</td>
-        <td>{{musicfestival.location</td>
-        <td>{{musicfestival.numOfDays</td>
-        <td>{{musicfestival.startDate</td>
-        <td>{{musicfestival.endDate</td>
-        <td>{{musicfestival.musicGenre</td>
-        <td>{{musicfestival.headliners</td>
-        <td>{{musicfestival.artistSeen</td>
-        <td>{{musicfestival.ticketPrice</td>
+      <tr *ngFor="let musicfestival of musicFests"
+        (click)="displayMusicFest(musicfestival)">
+        <td>{{ musicfestival.id }}</td>
+        <td>{{ musicfestival.name }}</td>
+        <td>{{ musicfestival.location }}</td>
+        <td>{{ musicfestival.numOfDays }}</td>
+        <td>{{ musicfestival.startDate }}</td>
+        <td>{{ musicfestival.endDate }}</td>
+        <td>{{ musicfestival.musicGenre }}</td>
+        <td>{{ musicfestival.headliners }}</td>
+        <td>{{ musicfestival.artistsSeen }}</td>
+        <td>{{ musicfestival.ticketPrice }}</td>
       </tr>
     </tbody>
   </table>
-  </div>
+</div>
+
+<div id="oneMusicFest" *ngIf="selectedMusicFest">
+  <h2>Selected Music Festival</h2>
+  <ul>
+    <li>{{selectedMusicFest.name | uppercase }}</li>
+    <li>ID: {{ selectedMusicFest.id }}</li>
+    <li>Location: {{selectedMusicFest.location}}</li>
+    <li>Number of Days: {{ selectedMusicFest.numOfDays }}</li>
+    <li>Start Date: {{ selectedMusicFest.startDate }}</li>
+    <li>End Date: {{ selectedMusicFest.endDate }}</li>
+    <li>Music Genre: {{ selectedMusicFest.musicGenre }}</li>
+    <li>Headliners: {{ selectedMusicFest.headliners }}</li>
+    <li>Artists Seen: {{ selectedMusicFest.artistsSeen }}</li>
+    <li>Ticket Price: {{ selectedMusicFest.ticketPrice }}</li>
+  </ul>
+</div>
