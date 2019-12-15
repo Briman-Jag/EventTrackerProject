@@ -10,8 +10,8 @@ const routes: Routes = [
   {path : '', pathMatch: 'full', redirectTo: 'home'},
   {path : 'home', component: HomeComponent},
   {path : 'about', component: AboutComponent},
-  {path : 'musicfestivals', component: MusicfestlistComponent}
-  {path : 'musicfestivals/:id', component: MusicfestlistComponent}
+  {path : 'musicfestivals', component: MusicfestlistComponent},
+  {path : 'musicfestivals/:id', component: MusicfestlistComponent},
   {path: '**', component: NotFoundComponent }
 ];
 

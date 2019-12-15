@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MusicFestival } from '../models/musicfestival';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
