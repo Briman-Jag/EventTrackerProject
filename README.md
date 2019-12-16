@@ -15,6 +15,9 @@ The test conditions for the project were:
 (Part 2)
 The second part of the project involved adding scripts with the use of Javascript to parse responses for full CRUD functionality. The music festival information is displayed with dynamically generated tables built in Javascript.
 
+(Part 3)
+The third part of this project was to develop the frontend of the Event Tracker application using AngularJS. Angular components, services, and directives were configured to send and receive JSON asynchronous requests to the Java controller with http. Bootstrap was also installed and applied to provide a more visually pleasing user interface.
+
 ### Routes
   | Return Type          | Route                  | Functionality                                                                       |
   |----------------------|------------------------|-------------------------------------------------------------------------------------|
@@ -47,6 +50,17 @@ The second part of the project involved adding scripts with the use of Javascrip
 * Gradle
 * AWS EC2
 * Apache Tomcat
+* AngularJS
+* Components
+* Services
+* Directives
+* DOM
+* Visual Studio Code
+* JSON
+* SpringRest
+* Javascript
+* XMLHttpRequest
+
 
 ### Lessons Learned
 A major issue that I ran into while doing this project was the spring boot application not being able to read my tables name correctly. The table was named MusicFestival and the application was looking for music_festival and giving an error that the table did not exist. To overcome this issue I added "spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" to the applications.properties.

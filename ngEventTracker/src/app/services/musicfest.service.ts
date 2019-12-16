@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { MusicFestival } from '../models/musicfestival';
 import { catchError } from 'rxjs/operators';
@@ -12,8 +13,8 @@ export class MusicfestService {
   constructor(private http: HttpClient) { }
 
   // Fields
-  private baseUrl = 'http://localhost:8087/';
-  private url = this.baseUrl + 'api/musicfestivals';
+ // private baseUrl = 'http://localhost:8087/';
+  private url = environment.baseUrl + 'api/musicfestivals';
 
   index() {
     return this.http.get<MusicFestival[]>(this.url + '?sorted=true')
