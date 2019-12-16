@@ -28,10 +28,13 @@
         <td>{{ musicfestival.musicGenre }}</td>
         <td>{{ musicfestival.headliners }}</td>
         <td>{{ musicfestival.artistsSeen }}</td>
-        <td>{{ musicfestival.ticketPrice }}</td>
+        <td>$ {{ musicfestival.ticketPrice }}</td>
       </tr>
     </tbody>
   </table>
+  <br>
+  <h3>Total Music Festivals Attended: {{ getNumberOfMusicFests()}}</h3>
+  <h3>Total Spent on Tickets: $ {{ totalSpent(musicFests)}}</h3>
 </div>
 <br>
 <br>
@@ -78,7 +81,7 @@
     <li>Ticket Price: {{ selectedMusicFest.ticketPrice }}</li>
   </ul>
   <button class="btn btn-primary" size="20" (click)="setEditMusicFestival()"> Edit </button>
-  <button class="btn btn-danger" size="20" (click)="deleteMusicFest(selectedMusicFest.id) && selectedMusicFest = null"> Delete </button>
+  <button class="btn btn-danger" size="20" (click)="deleteMusicFest(selectedMusicFest.id)"> Delete </button>
 </div>
 <div *ngIf='editMusicFest && selectedMusicFest'>
     <form>

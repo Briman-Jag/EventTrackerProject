@@ -108,12 +108,29 @@ export class MusicfestlistComponent implements OnInit {
     this.musicFestSvc.delete(id).subscribe(
       good => {
         this.loadMusicFestivalList();
+        this.selectedMusicFest = null;
       },
       bad => {
         console.error('MusicfestivalComponent.deleteMusicFest(): error deleting Music Festivals');
         console.error(bad);
       }
     );
+  }
+
+  // Extra Features
+
+  getNumberOfMusicFests() {
+    return this.musicFests.length;
+  }
+
+
+  totalSpent(musicFests): number {
+  let totalSpent = 0;
+  // tslint:disable-next-line: prefer-for-of
+  for ( let i = 0; i < musicFests.length; i++) {
+   totalSpent =  totalSpent + musicFests[i].ticketPrice;
+  }
+  return totalSpent;
   }
 
 }
