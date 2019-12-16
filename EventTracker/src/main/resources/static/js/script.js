@@ -275,8 +275,13 @@ function displayAllMusicFests(musicFests) {
 			tbdy.appendChild(tr);
 		}
 	}
+	
 
 	dataDiv.appendChild(tbl);
+	
+	let ticketTotal = document.createElement('h3');
+	dataDiv.appendChild(h3);
+	h3.textContent = "Total Spent On Tickets: $ " + addTicketPrices(musicFests);
 
 	// Add cell function
 	function addCell(tr, val) {
@@ -403,7 +408,7 @@ function displayAllMusicFests(musicFests) {
 					xhr.onreadystatechange = function() {
 						if (xhr.readyState === 4 && xhr.status < 400) {
 							var musicFest = JSON.parse(xhr.responseText);
-							displayAllMusicFests();
+							displayMusicFest(musicFest);
 						}
 						if (xhr.readyState === 4 && xhr.status >= 400) {
 							console.error(xhr.status + ': ' + xhr.responseText);
@@ -414,15 +419,15 @@ function displayAllMusicFests(musicFests) {
 
 		
 		var updateMusicFestObject = {
-			name : document.musicFestForm.name.value,
-			location : document.musicFestForm.location.value,
-			numOfDays : document.musicFestForm.numOfDays.value,
-			startDate : document.musicFestForm.startDate.value,
-			endDate : document.musicFestForm.endDate.value,
-			musicGenre : document.musicFestForm.musicGenre.value,
-			headliners : document.musicFestForm.headliners.value,
-			artistsSeen : document.musicFestForm.artistsSeen.value,
-			ticketPrice : document.musicFestForm.ticketPrice.value
+			name : document.musicFestForm.name,
+			location : document.musicFestForm.location,
+			numOfDays : document.musicFestForm.numOfDays,
+			startDate : document.musicFestForm.startDate,
+			endDate : document.musicFestForm.endDate,
+			musicGenre : document.musicFestForm.musicGenre,
+			headliners : document.musicFestForm.headliners,
+			artistsSeen : document.musicFestForm.artistsSeen,
+			ticketPrice : document.musicFestForm.ticketPrice
 		};
 		// Convert JS object to JSON string
 		var updateMusicFestJsonString = JSON.stringify(updateMusicFestObject);
@@ -460,6 +465,7 @@ function displayAllMusicFests(musicFests) {
 		xhr.setRequestHeader("Content-type", "application/json");
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4 && xhr.status < 400) {
+				
 				listAllMusicFests();
 				
 			}
@@ -469,5 +475,13 @@ function displayAllMusicFests(musicFests) {
 				dataDiv.textContent = 'Error Updating Music Festival';
 			}
 		};
+	}
+	
+	function addTicketPrices(musicFests) {
+		  let totalSpent = 0;
+		  for ( let i = 0; i < musicFests.length; i++) {
+		   totalSpent =  totalSpent + musicFests[i].ticketPrice;
+		  }
+		  return totalSpent;
 	}
 
